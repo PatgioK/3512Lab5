@@ -23,7 +23,10 @@ private:
     int result;
     std::stack<int> stack1;
 
-
+/*This function takes a char and returns a new operation type.
+*@param - char operation passed in determines which type of operator to return.
+*@return - dynamically allocates memory and returns a new operation type.
+*/
     operation *operation_type(char operation) {
         switch (operation) {
             case addition_operation::ADDITION_CODE:
@@ -37,6 +40,11 @@ private:
         }
     }
 public:
+    /*This function takes a operation pointer, takes two ints off the
+     * stack and calls the perform function to operate on the two ints.
+*@param - operation *o - pointer to a type of operation that operates on
+     * two ints from the stack.
+*/
     void perform(operation *o) {
         int a = stack1.top();
         stack1.pop();
@@ -45,6 +53,12 @@ public:
         result = o->perform(b, a);
         stack1.push(result);
     };
+    /*This function takes a string from a stream and checks whether it is an int
+     * or operand. If its an int it stores it and if its an operand it stores it
+     * in the operand array.
+*@param - string a - is a math formula written in the RPN format.
+*@return - returns the result int
+*/
     int process_form(string a) {
         istringstream iss(a);
         string operand;
@@ -57,7 +71,6 @@ public:
                 operation* op = operation_type(operand[0]);
                 perform(op);
                 delete op;
-
             }
         }
         return result;

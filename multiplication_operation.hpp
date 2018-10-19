@@ -10,10 +10,14 @@
 class multiplication_operation : public abstract_operation{
 public:
     static char const MULTIPLICATION_CODE = '*';
-
+    //default constructor for multiplication_operation.
     multiplication_operation() : abstract_operation(MULTIPLICATION_CODE) {
 
     }
+    /*This function takes two ints, multiplies their value and returns the sum
+*@param - val1 - first integer to multiply, val2 - second integer to multiply
+*@return - returns int of the product of val1 and val2
+*/
     int perform(int a, int b) {
         return a * b;
     }
